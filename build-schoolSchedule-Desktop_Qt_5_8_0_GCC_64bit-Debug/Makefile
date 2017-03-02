@@ -49,9 +49,11 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../schoolSchedule/main.cpp \
-		../schoolSchedule/mainwindow.cpp moc_mainwindow.cpp
+		../schoolSchedule/mainwindow.cpp \
+		../schoolSchedule/hash.cpp moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
+		hash.o \
 		moc_mainwindow.o
 DIST          = ../../../../Qt5.8.0/5.8/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt5.8.0/5.8/gcc_64/mkspecs/common/unix.conf \
@@ -203,6 +205,7 @@ DIST          = ../../../../Qt5.8.0/5.8/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt5.8.0/5.8/gcc_64/mkspecs/features/qt_config.prf \
 		../../../../Qt5.8.0/5.8/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../../../Qt5.8.0/5.8/gcc_64/mkspecs/features/spec_post.prf \
+		../schoolSchedule/.qmake.stash \
 		../../../../Qt5.8.0/5.8/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt5.8.0/5.8/gcc_64/mkspecs/features/toolchain.prf \
 		../../../../Qt5.8.0/5.8/gcc_64/mkspecs/features/default_pre.prf \
@@ -222,8 +225,10 @@ DIST          = ../../../../Qt5.8.0/5.8/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../../Qt5.8.0/5.8/gcc_64/mkspecs/features/exceptions.prf \
 		../../../../Qt5.8.0/5.8/gcc_64/mkspecs/features/yacc.prf \
 		../../../../Qt5.8.0/5.8/gcc_64/mkspecs/features/lex.prf \
-		../schoolSchedule/schoolSchedule.pro ../schoolSchedule/mainwindow.h ../schoolSchedule/main.cpp \
-		../schoolSchedule/mainwindow.cpp
+		../schoolSchedule/schoolSchedule.pro ../schoolSchedule/mainwindow.h \
+		../schoolSchedule/hash.h ../schoolSchedule/main.cpp \
+		../schoolSchedule/mainwindow.cpp \
+		../schoolSchedule/hash.cpp
 QMAKE_TARGET  = schoolSchedule
 DESTDIR       = 
 TARGET        = schoolSchedule
@@ -385,6 +390,7 @@ Makefile: ../schoolSchedule/schoolSchedule.pro ../../../../Qt5.8.0/5.8/gcc_64/mk
 		../../../../Qt5.8.0/5.8/gcc_64/mkspecs/features/qt_config.prf \
 		../../../../Qt5.8.0/5.8/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../../../Qt5.8.0/5.8/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../../Qt5.8.0/5.8/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../../Qt5.8.0/5.8/gcc_64/mkspecs/features/toolchain.prf \
 		../../../../Qt5.8.0/5.8/gcc_64/mkspecs/features/default_pre.prf \
@@ -559,6 +565,7 @@ Makefile: ../schoolSchedule/schoolSchedule.pro ../../../../Qt5.8.0/5.8/gcc_64/mk
 ../../../../Qt5.8.0/5.8/gcc_64/mkspecs/features/qt_config.prf:
 ../../../../Qt5.8.0/5.8/gcc_64/mkspecs/linux-g++/qmake.conf:
 ../../../../Qt5.8.0/5.8/gcc_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../../Qt5.8.0/5.8/gcc_64/mkspecs/features/exclusive_builds.prf:
 ../../../../Qt5.8.0/5.8/gcc_64/mkspecs/features/toolchain.prf:
 ../../../../Qt5.8.0/5.8/gcc_64/mkspecs/features/default_pre.prf:
@@ -597,8 +604,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../../Qt5.8.0/5.8/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../schoolSchedule/mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../schoolSchedule/main.cpp ../schoolSchedule/mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../schoolSchedule/mainwindow.h ../schoolSchedule/hash.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../schoolSchedule/main.cpp ../schoolSchedule/mainwindow.cpp ../schoolSchedule/hash.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../schoolSchedule/mainwindow.ui $(DISTDIR)/
 
 
@@ -738,6 +745,12 @@ moc_mainwindow.cpp: ../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QMainWindow
 		../../../../Qt5.8.0/5.8/gcc_64/include/QtGui/qtouchdevice.h \
 		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../../Qt5.8.0/5.8/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QPushButton \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtCore/QSignalMapper \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtCore/qsignalmapper.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QWidget \
 		../schoolSchedule/mainwindow.h \
 		moc_predefs.h \
 		../../../../Qt5.8.0/5.8/gcc_64/bin/moc
@@ -867,6 +880,12 @@ main.o: ../schoolSchedule/main.cpp ../schoolSchedule/mainwindow.h \
 		../../../../Qt5.8.0/5.8/gcc_64/include/QtGui/qtouchdevice.h \
 		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../../Qt5.8.0/5.8/gcc_64/include/QtGui/qicon.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QPushButton \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtCore/QSignalMapper \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtCore/qsignalmapper.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QWidget \
 		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QApplication \
 		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qapplication.h \
 		../../../../Qt5.8.0/5.8/gcc_64/include/QtCore/qcoreapplication.h \
@@ -981,8 +1000,55 @@ mainwindow.o: ../schoolSchedule/mainwindow.cpp ../schoolSchedule/mainwindow.h \
 		../../../../Qt5.8.0/5.8/gcc_64/include/QtGui/qtouchdevice.h \
 		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../../../Qt5.8.0/5.8/gcc_64/include/QtGui/qicon.h \
-		ui_mainwindow.h
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QPushButton \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qpushbutton.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qabstractbutton.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtCore/QSignalMapper \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtCore/qsignalmapper.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QWidget \
+		ui_mainwindow.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtCore/QVariant \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QAction \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qaction.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QApplication \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qapplication.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtCore/qeventloop.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtGui/qguiapplication.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtGui/qinputmethod.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QButtonGroup \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qbuttongroup.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QHeaderView \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qheaderview.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qabstractitemview.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qframe.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtCore/qabstractitemmodel.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtCore/qitemselectionmodel.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qstyleoption.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qabstractspinbox.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtGui/qvalidator.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtCore/qregularexpression.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qslider.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qabstractslider.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qstyle.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qtabbar.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qrubberband.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QMenuBar \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qmenubar.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qmenu.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QStatusBar \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qstatusbar.h \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/QToolBar \
+		../../../../Qt5.8.0/5.8/gcc_64/include/QtWidgets/qtoolbar.h \
+		../schoolSchedule/hash.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../schoolSchedule/mainwindow.cpp
+
+hash.o: ../schoolSchedule/hash.cpp ../schoolSchedule/hash.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o hash.o ../schoolSchedule/hash.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

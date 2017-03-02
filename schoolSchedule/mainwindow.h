@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QPushButton>
 #include <QSignalMapper>
+#include <QWidget>
+#include <hash.h>
 
 class MainWindow : public QMainWindow
 {
@@ -13,6 +15,10 @@ public:
 
 private:
     int lesson_width, lesson_height;
+
+
+    Hash *H;
+    QWidget *timeTable;
     QPushButton *lesson [5][8];
     QSignalMapper *signalMapper;
 
